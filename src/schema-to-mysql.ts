@@ -1,4 +1,5 @@
 import { Column } from '@itrocks/schema'
+import { Index }  from '@itrocks/schema'
 import { Table }  from '@itrocks/schema'
 import { Type }   from '@itrocks/schema'
 
@@ -37,9 +38,29 @@ export class SchemaToMysql
 		return '' + value
 	}
 
+	indexSql(index: Index)
+	{
+		const keysSql = ' ('
+			+ index.keys.map(key => '`' + key.columnName + '`' + (key.length ? '(' + key.length + ')' : '')).join(',')
+			+ ')'
+		return (index.type === 'primary')
+			? ('PRIMARY KEY' + keysSql)
+			: (((index.type === 'unique') ? 'UNIQUE ' : '') + 'KEY `' + index.name + '`' + keysSql)
+	}
+
+	indexesSql(indexes: Index[])
+	{
+		return indexes.map(index => this.indexSql(index)).join(',\n')
+	}
+
 	sql(table: Table)
 	{
-		return this.tableSql(table) + ' (\n' + this.columnsSql(table.columns) + '\n)' + this.tableSqlEnd(table)
+		const columnsSql = this.columnsSql(table.columns)
+		const indexesSql = this.indexesSql(table.indexes)
+		return this.tableSql(table) + ' (\n'
+			+ columnsSql
+			+ (indexesSql ? ',' + indexesSql : '') + '\n)'
+			+ this.tableSqlEnd(table)
 	}
 
 	tableSql(table: Table)

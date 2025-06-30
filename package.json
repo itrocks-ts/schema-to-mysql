@@ -52,5 +52,5 @@
 		"build:esm": "tsc -p tsconfig.esm.json"
 	},
 	"types": "./esm/schema-to-mysql.d.ts",
-	"version": "0.0.2"
+	"version": "0.0.3"
 }
