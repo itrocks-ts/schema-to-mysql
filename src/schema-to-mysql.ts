@@ -122,7 +122,7 @@ export class SchemaToMysql
 				typeSql = name
 		}
 		return typeSql
-			+ ((type.signed === false) ? ' UNSIGNED' : '')
+			+ ((type.signed === false) ? ' unsigned' : '')
 			+ (type.zeroFill ? ' ZEROFILL' : '')
 	}
 
