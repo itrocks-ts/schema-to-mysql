@@ -8,7 +8,7 @@
 	},
 	"description": "Converts a table schema into MySQL statements for table creation",
 	"devDependencies": {
-		"typescript": "~5.8"
+		"typescript": "~5.9"
 	},
 	"engines": {
 		"node": ">=18"
@@ -52,5 +52,5 @@
 		"build:esm": "tsc -p tsconfig.esm.json"
 	},
 	"types": "./esm/schema-to-mysql.d.ts",
-	"version": "0.0.4"
+	"version": "0.0.5"
 }
