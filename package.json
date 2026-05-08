@@ -8,20 +8,17 @@
 	},
 	"description": "Converts a table schema into MySQL statements for table creation",
 	"devDependencies": {
-		"typescript": "~5.9"
+		"typescript": "^6.0"
 	},
 	"engines": {
-		"node": ">=18"
+		"node": ">=24"
 	},
-	"exports": {
-		"import": "./esm/schema-to-mysql.js",
-		"require": "./cjs/schema-to-mysql.js"
-	},
+	"exports": "./cjs/schema-to-mysql.js",
 	"files": [
 		"LICENSE",
 		"README.md",
-		"*/*.d.ts",
-		"*/*.js"
+		"cjs",
+		"!*.map"
 	],
 	"homepage": "https://it.rocks",
 	"keywords": [
@@ -51,10 +48,7 @@
 		"url": "git+https://github.com/itrocks-ts/schema-to-mysql.git"
 	},
 	"scripts": {
-		"build": "npm run build:cjs && npm run build:esm",
-		"build:cjs": "tsc -p tsconfig.cjs.json",
-		"build:esm": "tsc -p tsconfig.esm.json"
+		"build": "tsc"
 	},
-	"types": "./esm/schema-to-mysql.d.ts",
-	"version": "0.0.6"
+	"version": "0.1.0"
 }
