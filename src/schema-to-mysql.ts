@@ -81,8 +81,12 @@ export class SchemaToMysql
 		const name     = type.name
 		let   typeSql: string
 		switch (name) {
+			case 'boolean':
+				typeSql     = 'tinyint'
+				type.signed = false
+				break
 			case 'decimal':
-				typeSql= 'decimal(' + type.length + ',' + type.precision + ')'
+				typeSql = 'decimal(' + type.length + ',' + type.precision + ')'
 				break
 			case 'integer':
 				const maxValue = type.maxValue as number | undefined
